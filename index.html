@@ -1,336 +1,1559 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Brandrim - منصة الخدمات الرقمية العالمية</title>
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- AOS for animations -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <!-- Main CSS -->
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>BRANDRIM IPTV | أفضل خدمة IPTV في المغرب</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0a0f1e;
+            --card: rgba(15, 23, 42, 0.85);
+            --card-solid: #0f172a;
+            --text: #ffffff;
+            --text-light: #cbd5e1;
+            --primary: #10b981;
+            --primary-light: #34d399;
+            --primary-dark: #059669;
+            --whatsapp: #25D366;
+            --whatsapp-dark: #128C7E;
+            --whatsapp-light: #30e06e;
+            --border: rgba(16, 185, 129, 0.3);
+            --shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            --shadow-glow: 0 0 30px rgba(16, 185, 129, 0.4);
+            --gold: #fbbf24;
+            --purple: #8b5cf6;
+            --blue: #3b82f6;
+            --orange: #f97316;
+        }
+
+        body {
+            font-family: 'Cairo', 'Tajawal', 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: all 0.3s ease;
+        }
+
+        body.english {
+            direction: ltr;
+            text-align: left;
+        }
+
+        body.english .container,
+        body.english .hero p,
+        body.english .section-title,
+        body.english .section-sub,
+        body.english .card-body li,
+        body.english .feature p,
+        body.english .device span,
+        body.english footer {
+            text-align: left;
+        }
+
+        body.english .stat,
+        body.english .hero-badge,
+        body.english .btn-order-green,
+        body.english .btn-trial,
+        body.english .contact-card {
+            direction: ltr;
+        }
+
+        /* Background Animation */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(circle at 20% 30%, rgba(16,185,129,0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(59,130,246,0.1) 0%, transparent 50%);
+            animation: bgMove 20s ease infinite;
+        }
+
+        @keyframes bgMove {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        /* Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: linear-gradient(135deg, var(--primary), var(--blue));
+            border-radius: 50%;
+            opacity: 0.2;
+            animation: floatParticle linear infinite;
+        }
+
+        @keyframes floatParticle {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.2; }
+            90% { opacity: 0.2; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            flex-wrap: wrap;
+            gap: 15px;
+            animation: slideDown 0.8s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+        }
+
+        /* Language Switcher */
+        .lang-switch {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 10px 20px;
+            cursor: pointer;
+            color: var(--text);
+            font-weight: 600;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lang-switch:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .btn-icon {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 10px 20px;
+            cursor: pointer;
+            color: var(--text);
+            font-weight: 600;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-icon:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Logo */
+        .logo {
+            position: relative;
+            font-size: 2rem;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .logo-main {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light), var(--gold), var(--purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: logoGlowEnhanced 3s ease infinite;
+            background-size: 200% auto;
+        }
+
+        .logo-iptv {
+            background: linear-gradient(135deg, var(--gold), var(--primary-light), var(--blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        @keyframes logoGlowEnhanced {
+            0%, 100% { 
+                filter: drop-shadow(0 0 2px rgba(16,185,129,0.3));
+                background-position: 0% 50%;
+            }
+            50% { 
+                filter: drop-shadow(0 0 15px rgba(16,185,129,0.6));
+                background-position: 100% 50%;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 0 50px;
+        }
+
+        .hero-badge {
+            background: linear-gradient(135deg, rgba(16,185,129,0.25), rgba(59,130,246,0.15));
+            display: inline-block;
+            padding: 10px 30px;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--primary-light);
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16,185,129,0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(16,185,129,0); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 7vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff, var(--primary-light), var(--whatsapp), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 300% auto;
+            animation: gradientShift 4s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero p {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            margin-bottom: 35px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .stat {
+            background: var(--card);
+            backdrop-filter: blur(10px);
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .stat:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .stat i {
+            color: var(--primary);
+            margin-left: 8px;
+        }
+
+        body.english .stat i {
+            margin-left: 0;
+            margin-right: 8px;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            margin: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        .section-sub {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 50px;
+        }
+
+        /* Pricing Cards */
+        .pricing-horizontal {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 0 -15px;
+        }
+
+        .price-card-h {
+            background: linear-gradient(135deg, var(--card-solid), rgba(15, 23, 42, 0.95));
+            border-radius: 32px;
+            padding: 0;
+            width: 100%;
+            max-width: 270px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            margin: 0 15px;
+        }
+
+        .price-card-h::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light), var(--gold));
+            transform: translateX(-100%);
+            transition: transform 0.5s;
+        }
+
+        .price-card-h:hover::before {
+            transform: translateX(0);
+        }
+
+        .price-card-h:hover {
+            transform: translateY(-12px);
+            border-color: var(--primary);
+            box-shadow: 0 25px 40px rgba(16,185,129,0.25);
+        }
+
+        .price-card-h.popular-h {
+            border: 2px solid transparent;
+            background: linear-gradient(var(--card-solid), var(--card-solid)) padding-box,
+                        linear-gradient(135deg, var(--primary), var(--gold), var(--primary-light)) border-box;
+            transform: scale(1.02);
+        }
+
+        .popular-badge-h {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--gold));
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            animation: badgePop 0.5s ease;
+        }
+
+        body.english .popular-badge-h {
+            right: auto;
+            left: 15px;
+        }
+
+        @keyframes badgePop {
+            from { transform: scale(0) rotate(-180deg); }
+            to { transform: scale(1) rotate(0); }
+        }
+
+        .card-header {
+            padding: 25px 20px 15px;
+            text-align: center;
+            border-bottom: 2px dashed var(--border);
+        }
+
+        .card-header h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .card-header .price {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .card-header .price small {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        .card-body {
+            padding: 20px 20px;
+            min-height: 200px;
+        }
+
+        .card-body ul {
+            list-style: none;
+        }
+
+        .card-body li {
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .card-body li i {
+            color: var(--primary);
+            font-size: 0.8rem;
+            width: 20px;
+        }
+
+        .card-footer {
+            padding: 15px 20px 25px;
+        }
+
+        /* Green Button */
+        .btn-order-green {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 60px;
+            font-weight: 800;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            background: linear-gradient(135deg, var(--whatsapp), var(--whatsapp-dark));
+            color: white;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-order-green::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+
+        .btn-order-green:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-order-green:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        .btn-order-green i {
+            font-size: 1.2rem;
+            animation: iconPulse 1s ease infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Beautiful Countdown Timer - Premium Design */
+        .countdown-premium {
+            margin: 60px 0;
+            position: relative;
+        }
+
+        .countdown-card {
+            background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(59,130,246,0.08));
+            backdrop-filter: blur(15px);
+            border-radius: 70px;
+            padding: 40px 50px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(16,185,129,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .countdown-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, 
+                var(--primary), var(--gold), var(--orange), var(--blue), var(--primary));
+            border-radius: 72px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .countdown-card:hover::before {
+            opacity: 1;
+            animation: borderRotate 3s linear infinite;
+        }
+
+        @keyframes borderRotate {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        .countdown-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .countdown-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(251,191,36,0.1));
+            padding: 12px 30px;
+            border-radius: 60px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(16,185,129,0.3);
+        }
+
+        .countdown-icon i {
+            font-size: 2rem;
+            color: var(--gold);
+            animation: iconSpin 2s ease infinite;
+        }
+
+        @keyframes iconSpin {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        .countdown-header h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, var(--primary-light), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .time-block {
+            background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(16,185,129,0.2));
+            border-radius: 30px;
+            padding: 20px 25px;
+            min-width: 110px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(16,185,129,0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .time-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(16,185,129,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .time-block:hover::before {
+            left: 100%;
+        }
+
+        .time-block:hover {
+            transform: translateY(-8px) scale(1.05);
+            border-color: var(--primary);
+            box-shadow: 0 15px 35px rgba(16,185,129,0.3);
+        }
+
+        .time-number {
+            font-size: 2.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--gold), var(--orange));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-family: monospace;
+            line-height: 1;
+            letter-spacing: 2px;
+        }
+
+        .time-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .time-separator {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: separatorPulse 1s ease infinite;
+        }
+
+        @keyframes separatorPulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Free Trial */
+        .trial {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border-radius: 40px;
+            padding: 50px 40px;
+            text-align: center;
+            margin: 50px 0;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .trial::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(16,185,129,0.15) 0%, transparent 70%);
+            animation: rotateSlow 20s linear infinite;
+        }
+
+        @keyframes rotateSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .trial h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(135deg, #fff, var(--whatsapp-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .trial p {
+            font-size: 1rem;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+            color: var(--text-light);
+        }
+
+        .trial-form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .trial-form input {
+            padding: 15px 28px;
+            border-radius: 60px;
+            border: 2px solid var(--border);
+            background: rgba(255,255,255,0.1);
+            width: 280px;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.3s;
+            font-size: 1rem;
+            color: white;
+            backdrop-filter: blur(5px);
+        }
+
+        .trial-form input:focus {
+            border-color: var(--whatsapp);
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(37,211,102,0.3);
+        }
+
+        .btn-trial {
+            background: linear-gradient(135deg, var(--whatsapp), var(--whatsapp-dark));
+            padding: 15px 35px;
+            border-radius: 60px;
+            font-weight: 800;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            animation: trialGlow 2s infinite;
+        }
+
+        @keyframes trialGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0.5); }
+            50% { box-shadow: 0 0 0 15px rgba(37,211,102,0); }
+        }
+
+        .btn-trial:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(37,211,102,0.5);
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+            margin: 60px 0;
+        }
+
+        .feature {
+            background: var(--card);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 30px 20px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.4s;
+        }
+
+        .feature:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+        }
+
+        .feature i {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .feature:hover i {
+            transform: scale(1.1);
+        }
+
+        .feature h4 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        /* Devices */
+        .devices {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 50px 0;
+        }
+
+        .device {
+            background: var(--card);
+            backdrop-filter: blur(10px);
+            padding: 12px 28px;
+            border-radius: 60px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .device:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .device i {
+            margin-left: 8px;
+        }
+
+        body.english .device i {
+            margin-left: 0;
+            margin-right: 8px;
+        }
+
+        /* CTA Footer */
+        .cta {
+            background: linear-gradient(135deg, var(--card), rgba(16,185,129,0.15));
+            backdrop-filter: blur(12px);
+            border-radius: 50px;
+            padding: 45px 35px;
+            text-align: center;
+            margin: 60px 0;
+            border: 1px solid var(--border);
+        }
+
+        .cta h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 25px;
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255,255,255,0.05);
+            padding: 18px 35px;
+            border-radius: 80px;
+            transition: all 0.4s;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            animation: contactGlow 2s ease infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .contact-card:hover::before {
+            left: 100%;
+        }
+
+        @keyframes contactGlow {
+            0%, 100% { 
+                border-color: var(--border);
+                box-shadow: 0 0 0 0 rgba(16,185,129,0.2);
+            }
+            50% { 
+                border-color: var(--primary);
+                box-shadow: 0 0 0 8px rgba(16,185,129,0.15);
+            }
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            background: rgba(16,185,129,0.15);
+            border-color: var(--primary);
+            animation: none;
+        }
+
+        .contact-icon {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover .contact-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .contact-info .contact-card:first-child .contact-icon {
+            background: linear-gradient(135deg, var(--whatsapp), var(--whatsapp-dark));
+        }
+
+        .contact-details {
+            text-align: right;
+        }
+
+        body.english .contact-details {
+            text-align: left;
+        }
+
+        .contact-label {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            letter-spacing: 0.5px;
+        }
+
+        .contact-value {
+            font-size: 1.2rem;
+            font-weight: 800;
+            direction: ltr;
+            display: inline-block;
+            background: linear-gradient(135deg, #fff, var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid var(--border);
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .social a {
+            color: var(--text-light);
+            margin: 0 12px;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .social a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .countdown-card {
+                padding: 30px 20px;
+            }
+            .time-block {
+                min-width: 80px;
+                padding: 15px 12px;
+            }
+            .time-number {
+                font-size: 2rem;
+            }
+            .time-separator {
+                display: none;
+            }
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+            .contact-card {
+                width: 100%;
+                justify-content: center;
+            }
+            .pricing-horizontal {
+                gap: 20px;
+            }
+            .price-card-h {
+                margin: 0;
+            }
+            .countdown-timer {
+                gap: 12px;
+            }
+        }
+    </style>
 </head>
-<body>
-  <header>
-    <div class="container header-inner">
-      <div class="logo">Brandrim</div>
-      <nav class="nav-menu" id="navMenu">
-        <a id="homeBtn" class="active">الرئيسية</a>
-        <a id="aboutBtn">من نحن</a>
-        <a id="privacyBtn">سياسة الخصوصية</a>
-        <a href="#services">الخدمات</a>
-        <a id="contactBtn">تواصل معنا</a>
-      </nav>
-      <div class="nav-icons">
-        <div class="lang-switcher">
-          <button class="lang-btn active" data-lang="ar">🇲🇦 AR</button>
-          <button class="lang-btn" data-lang="fr">🇫🇷 FR</button>
-          <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+<body dir="rtl">
+
+<div class="bg-animation"></div>
+<div class="particles" id="particles"></div>
+
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <span class="logo-main">BRANDRIM</span>
+            <span class="logo-iptv">IPTV</span>
         </div>
-        <a href="#" id="cartIcon" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
-        <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
-      </div>
+        <div class="controls">
+            <div class="lang-switch" id="langSwitch">
+                <i class="fas fa-globe"></i>
+                <span id="langText">English</span>
+            </div>
+            <div class="btn-icon" id="themeToggle"><i class="fas fa-moon"></i> <span id="themeText">الوضع المظلم</span></div>
+        </div>
     </div>
-  </header>
 
-  <!-- Promo Banner -->
-  <div class="promo-banner">
-    <i class="fas fa-tag"></i> كود الخصم: <span>BRANDRIM10</span> خصم 10% على جميع الخدمات
-  </div>
-
-  <!-- Modal for About, Privacy, Contact -->
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <span class="modal-close" id="modalClose">&times;</span>
-      <h2 class="modal-title" id="modalTitle"></h2>
-      <div id="modalBody"></div>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-badge" data-aos="zoom-in" id="heroBadge">
+            <i class="fas fa-crown"></i> <span id="badgeText">+25,000 قناة | جودة 4K | بث مباشر</span>
+        </div>
+        <h1 data-aos="fade-up">BRANDRIM IPTV</h1>
+        <p data-aos="fade-up" data-aos-delay="100" id="heroDesc">أفضل خدمة IPTV في المغرب والعالم العربي<br>جودة 4K فائقة - بث بدون تقطيع - دعم فني على مدار الساعة</p>
+        <div class="stats">
+            <div class="stat"><i class="fas fa-check-circle"></i> <span id="stat1">99.9% استقرار</span></div>
+            <div class="stat"><i class="fas fa-globe"></i> <span id="stat2">+120 دولة</span></div>
+            <div class="stat"><i class="fas fa-users"></i> <span id="stat3">+15,000 عميل</span></div>
+            <div class="stat"><i class="fas fa-star"></i> <span id="stat4">4.9 ★ تقييم</span></div>
+        </div>
     </div>
-  </div>
 
-  <!-- Hero -->
-  <section class="hero" id="home">
-    <div>
-      <h1 data-aos="fade-up" data-aos-duration="1000">مرحباً بك في <span>Brandrim</span></h1>
-      <p data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">حلول رقمية متكاملة لتطوير أعمالك</p>
+    <!-- Pricing Section -->
+    <div class="pricing-section">
+        <h2 class="section-title" data-aos="fade-up"><span id="pricingTitle">الباقات</span> <span id="pricingCurrency">بالدرهم المغربي</span></h2>
+        <p class="section-sub" data-aos="fade-up" id="pricingSub">اختر الباقة المناسبة واستمتع بمشاهدة غير محدودة</p>
+        
+        <div class="pricing-horizontal">
+            <!-- Monthly Plan -->
+            <div class="price-card-h" data-aos="flip-up" data-aos-delay="100">
+                <div class="card-header">
+                    <h3><i class="fas fa-calendar-alt"></i> <span class="plan-monthly">شهرية</span></h3>
+                    <div class="price">50 <small>MAD</small></div>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <span class="feature1">1 اتصال متزامن</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span class="feature2">25,000+ قناة</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span class="feature3">مكتبة VOD محدثة</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span class="feature4">دعم فني 24/7</span></li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="https://wa.me/212698490007?text=أريد%20الباقة%20الشهرية%20BRANDRIM" class="btn-order-green">
+                        <i class="fab fa-whatsapp"></i> <span class="subscribe-btn">اشترك الآن</span>
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3 Months Plan -->
+            <div class="price-card-h" data-aos="flip-up" data-aos-delay="150">
+                <div class="card-header">
+                    <h3><i class="fas fa-calendar-week"></i> <span class="plan-3months">3 أشهر</span></h3>
+                    <div class="price">100 <small>MAD</small></div>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <span class="feature1-3">2 اتصال متزامن</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span class="feature2-3">جودة 4K + FHD</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span class="feature3-3">EPG (دليل القنوات)</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span class="feature4-3">💰 وفر 50 درهم</span></li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="https://wa.me/212698490007?text=أريد%20الباقة%203%20أشهر%20BRANDRIM" class="btn-order-green">
+                        <i class="fab fa-whatsapp"></i> <span class="subscribe-btn">اشترك الآن</span>
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 6 Months Plan - Popular -->
+            <div class="price-card-h popular-h" data-aos="flip-up" data-aos-delay="200">
+                <div class="popular-badge-h"><i class="fas fa-crown"></i> <span class="popular-badge">الأكثر مبيعاً</span></div>
+                <div class="card-header">
+                    <h3><i class="fas fa-gem"></i> <span class="plan-6months">6 أشهر</span></h3>
+                    <div class="price">150 <small>MAD</small></div>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <span class="feature1-6">2 اتصال متزامن</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span class="feature2-6">4K Ultra + PPV مجاني</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span class="feature3-6"><i class="fas fa-crown"></i> دعم VIP أولوية</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span class="feature4-6">🎁 شهر مجاني إضافي</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span class="feature5-6">💰 وفر 150 درهم</span></li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="https://wa.me/212698490007?text=أريد%20الباقة%206%20أشهر%20BRANDRIM" class="btn-order-green">
+                        <i class="fab fa-whatsapp"></i> <span class="subscribe-btn">اشترك الآن</span>
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Yearly Plan -->
+            <div class="price-card-h" data-aos="flip-up" data-aos-delay="250">
+                <div class="card-header">
+                    <h3><i class="fas fa-calendar-check"></i> <span class="plan-yearly">سنة</span></h3>
+                    <div class="price">250 <small>MAD</small></div>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <span class="feature1-year">3 اتصال متزامن</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span class="feature2-year">4K Ultra + كل المحتوى</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span class="feature3-year">🎁 شهران مجانيان</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span class="feature4-year">دعم VIP مدى الحياة</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span class="feature5-year">💰 وفر 350 درهم</span></li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="https://wa.me/212698490007?text=أريد%20الباقة%20السنوية%20BRANDRIM" class="btn-order-green">
+                        <i class="fab fa-whatsapp"></i> <span class="subscribe-btn">اشترك الآن</span>
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-  </section>
 
-  <!-- Services -->
-  <section class="container" id="services">
-    <h2 class="section-title" data-aos="fade-up"><span>خدماتنا</span> المميزة</h2>
-    <div class="services-grid" id="servicesGrid">
-      <!-- خدمة 1: تصميم مواقع -->
-      <div class="service-card" data-aos="zoom-in" data-aos-duration="800" data-name="تصميم مواقع" data-price="350" data-stock="15" data-orders="234">
-        <div class="service-img"><img src="images-br-2027/web-design.jpg" alt="تصميم مواقع" loading="lazy"></div>
-        <div class="badge sale">خصم 20%</div>
-        <div class="card-content">
-          <h3 class="card-title">تصميم مواقع</h3>
-          <div class="product-info">
-            <span class="stock"><i class="fas fa-boxes"></i> المخزون: <span class="stock-value">15</span></span>
-            <span class="orders"><i class="fas fa-shopping-bag"></i> الطلبات: <span class="orders-value">234</span></span>
-          </div>
-          <div class="card-price">350 درهم <span class="original-price">440 درهم</span></div>
-          <button class="btn-add add-to-cart"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-            <input type="hidden" name="cmd" value="_xclick">
-            <input type="hidden" name="business" value="mohammmedtaziante2@gmail.com">
-            <input type="hidden" name="item_name" value="تصميم مواقع">
-            <input type="hidden" name="amount" value="350.00">
-            <input type="hidden" name="currency_code" value="USD">
-            <button type="submit" class="paypal-btn"><i class="fab fa-paypal"></i> دفع عبر PayPal</button>
-          </form>
+    <!-- Premium Countdown Timer - Beautiful Design -->
+    <div class="countdown-premium" data-aos="zoom-in">
+        <div class="countdown-card">
+            <div class="countdown-header">
+                <div class="countdown-icon">
+                    <i class="fas fa-hourglass-half"></i>
+                    <i class="fas fa-fire"></i>
+                </div>
+                <h3 id="countdownTitle">⏰ العرض الخاص ينتهي خلال</h3>
+            </div>
+            <div class="countdown-timer" id="countdown">
+                <div class="time-block">
+                    <div class="time-number" id="days">00</div>
+                    <div class="time-label" id="daysLabel">أيام</div>
+                </div>
+                <div class="time-separator">:</div>
+                <div class="time-block">
+                    <div class="time-number" id="hours">00</div>
+                    <div class="time-label" id="hoursLabel">ساعات</div>
+                </div>
+                <div class="time-separator">:</div>
+                <div class="time-block">
+                    <div class="time-number" id="minutes">00</div>
+                    <div class="time-label" id="minutesLabel">دقائق</div>
+                </div>
+                <div class="time-separator">:</div>
+                <div class="time-block">
+                    <div class="time-number" id="seconds">00</div>
+                    <div class="time-label" id="secondsLabel">ثواني</div>
+                </div>
+            </div>
         </div>
-      </div>
-      <!-- خدمة 2: تسويق رقمي -->
-      <div class="service-card" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="800" data-name="تسويق رقمي" data-price="400" data-stock="8" data-orders="567">
-        <div class="service-img"><img src="images-br-2027/marketing.jpg" alt="تسويق رقمي" loading="lazy"></div>
-        <div class="badge">الأكثر طلباً</div>
-        <div class="card-content">
-          <h3 class="card-title">تسويق رقمي</h3>
-          <div class="product-info">
-            <span class="stock"><i class="fas fa-boxes"></i> المخزون: <span class="stock-value">8</span></span>
-            <span class="orders"><i class="fas fa-shopping-bag"></i> الطلبات: <span class="orders-value">567</span></span>
-          </div>
-          <div class="card-price">400 درهم <span class="original-price">500 درهم</span></div>
-          <button class="btn-add add-to-cart"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-            <input type="hidden" name="cmd" value="_xclick">
-            <input type="hidden" name="business" value="mohammmedtaziante2@gmail.com">
-            <input type="hidden" name="item_name" value="تسويق رقمي">
-            <input type="hidden" name="amount" value="400.00">
-            <input type="hidden" name="currency_code" value="USD">
-            <button type="submit" class="paypal-btn"><i class="fab fa-paypal"></i> دفع عبر PayPal</button>
-          </form>
-        </div>
-      </div>
-      <!-- خدمة 3: تصميم جرافيك -->
-      <div class="service-card" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="800" data-name="تصميم جرافيك" data-price="250" data-stock="22" data-orders="189">
-        <div class="service-img"><img src="images-br-2027/graphic-design.jpg" alt="تصميم جرافيك" loading="lazy"></div>
-        <div class="badge sale">عرض خاص</div>
-        <div class="card-content">
-          <h3 class="card-title">تصميم جرافيك</h3>
-          <div class="product-info">
-            <span class="stock"><i class="fas fa-boxes"></i> المخزون: <span class="stock-value">22</span></span>
-            <span class="orders"><i class="fas fa-shopping-bag"></i> الطلبات: <span class="orders-value">189</span></span>
-          </div>
-          <div class="card-price">250 درهم <span class="original-price">300 درهم</span></div>
-          <button class="btn-add add-to-cart"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-            <input type="hidden" name="cmd" value="_xclick">
-            <input type="hidden" name="business" value="mohammmedtaziante2@gmail.com">
-            <input type="hidden" name="item_name" value="تصميم جرافيك">
-            <input type="hidden" name="amount" value="250.00">
-            <input type="hidden" name="currency_code" value="USD">
-            <button type="submit" class="paypal-btn"><i class="fab fa-paypal"></i> دفع عبر PayPal</button>
-          </form>
-        </div>
-      </div>
-      <!-- خدمة 4: SEO -->
-      <div class="service-card" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="800" data-name="SEO" data-price="300" data-stock="5" data-orders="412">
-        <div class="service-img"><img src="images-br-2027/seo.jpg" alt="SEO" loading="lazy"></div>
-        <div class="badge sale">خصم 15%</div>
-        <div class="card-content">
-          <h3 class="card-title">تحسين محركات البحث</h3>
-          <div class="product-info">
-            <span class="stock"><i class="fas fa-boxes"></i> المخزون: <span class="stock-value">5</span></span>
-            <span class="orders"><i class="fas fa-shopping-bag"></i> الطلبات: <span class="orders-value">412</span></span>
-          </div>
-          <div class="card-price">300 درهم <span class="original-price">350 درهم</span></div>
-          <button class="btn-add add-to-cart"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-            <input type="hidden" name="cmd" value="_xclick">
-            <input type="hidden" name="business" value="mohammmedtaziante2@gmail.com">
-            <input type="hidden" name="item_name" value="SEO">
-            <input type="hidden" name="amount" value="300.00">
-            <input type="hidden" name="currency_code" value="USD">
-            <button type="submit" class="paypal-btn"><i class="fab fa-paypal"></i> دفع عبر PayPal</button>
-          </form>
-        </div>
-      </div>
-      <!-- خدمة 5: IPTV -->
-      <div class="service-card" data-aos="zoom-in" data-aos-delay="400" data-aos-duration="800" data-name="IPTV" data-price="150" data-stock="120" data-orders="890">
-        <div class="service-img"><img src="images-br-2027/iptv.jpg" alt="IPTV" loading="lazy"></div>
-        <div class="badge">جديد</div>
-        <div class="card-content">
-          <h3 class="card-title">IPTV</h3>
-          <div class="product-info">
-            <span class="stock"><i class="fas fa-boxes"></i> المخزون: <span class="stock-value">120</span></span>
-            <span class="orders"><i class="fas fa-shopping-bag"></i> الطلبات: <span class="orders-value">890</span></span>
-          </div>
-          <div class="card-price">150 درهم <span class="original-price">200 درهم</span></div>
-          <button class="btn-add add-to-cart"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-            <input type="hidden" name="cmd" value="_xclick">
-            <input type="hidden" name="business" value="mohammmedtaziante2@gmail.com">
-            <input type="hidden" name="item_name" value="IPTV">
-            <input type="hidden" name="amount" value="150.00">
-            <input type="hidden" name="currency_code" value="USD">
-            <button type="submit" class="paypal-btn"><i class="fab fa-paypal"></i> دفع عبر PayPal</button>
-          </form>
-        </div>
-      </div>
-      <!-- خدمة 6: الدورات الرقمية -->
-      <div class="service-card" data-aos="zoom-in" data-aos-delay="500" data-aos-duration="800" data-name="الدورات الرقمية" data-price="180" data-stock="45" data-orders="320">
-        <div class="service-img"><img src="images-br-2027/digital-courses.jpg" alt="الدورات الرقمية" loading="lazy"></div>
-        <div class="badge sale">خصم 10%</div>
-        <div class="card-content">
-          <h3 class="card-title">الدورات الرقمية</h3>
-          <div class="product-info">
-            <span class="stock"><i class="fas fa-boxes"></i> المخزون: <span class="stock-value">45</span></span>
-            <span class="orders"><i class="fas fa-shopping-bag"></i> الطلبات: <span class="orders-value">320</span></span>
-          </div>
-          <div class="card-price">180 درهم <span class="original-price">200 درهم</span></div>
-          <button class="btn-add add-to-cart"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-            <input type="hidden" name="cmd" value="_xclick">
-            <input type="hidden" name="business" value="mohammmedtaziante2@gmail.com">
-            <input type="hidden" name="item_name" value="الدورات الرقمية">
-            <input type="hidden" name="amount" value="180.00">
-            <input type="hidden" name="currency_code" value="USD">
-            <button type="submit" class="paypal-btn"><i class="fab fa-paypal"></i> دفع عبر PayPal</button>
-          </form>
-        </div>
-      </div>
     </div>
-  </section>
 
-  <!-- Testimonials Section -->
-  <section class="testimonials" id="testimonials">
-    <div class="container">
-      <h2 class="section-title" data-aos="fade-up"><span>آراء</span> عملائنا</h2>
-      <div class="testimonials-grid">
-        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="0">
-          <img src="images-br-2027/testimonial-1.png" alt="أحمد" class="testimonial-img">
-          <div class="testimonial-name">أحمد محمد</div>
-          <div class="testimonial-role">صاحب متجر إلكتروني</div>
-          <div class="stars">
-            <i class="fas fa-star star"></i>
-            <i class="fas fa-star star"></i>
-            <i class="fas fa-star star"></i>
-            <i class="fas fa-star star"></i>
-            <i class="fas fa-star star"></i>
-          </div>
-          <p class="testimonial-text">"خدمة رائعة وسريعة جداً! فريق محترف ودقيق في المواعيد. سأتعامل معهم مرة أخرى."</p>
-        </div>
-        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
-          <img src="images-br-2027/testimonial-2.png" alt="فاطمة" class="testimonial-img">
-          <div class="testimonial-name">فاطمة الزهراء</div>
-          <div class="testimonial-role">مديرة تسويق</div>
-          <div class="stars">
-            <i class="fas fa-star star"></i>
-            <i class="fas fa-star star"></i>
-            <i class="fas fa-star star"></i>
-            <i class="fas fa-star star"></i>
-            <i class="fas fa-star star"></i>
-          </div>
-          <p class="testimonial-text">"الدورات الرقمية غيرت طريقة عملي بالكامل. أنصح بشدة بالاشتراك فيها."</p>
-        </div>
-        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
-          <img src="images-br-2027/testimonial-3.png" alt="يوسف" class="testimonial-img">
-          <div class="testimonial-name">يوسف عبدالله</div>
-          <div class="testimonial-role">مطور مستقل</div>
-          <div class="stars">
-            <i class="fas fa-star star"></i>
-            <i class="fas fa-star star"></i>
-            <i class="fas fa-star star"></i>
-            <i class="fas fa-star star"></i>
-            <i class="fas fa-star star"></i>
-          </div>
-          <p class="testimonial-text">"تصميم الموقع الذي طلبته تجاوز توقعاتي. سرعة في الأداء وتصميم أنيق."</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Form Section -->
-  <section class="contact-section" id="contact">
-    <div class="container">
-      <h2 class="section-title" data-aos="fade-up"><span>تواصل</span> معنا</h2>
-      <div class="contact-form" data-aos="fade-up" data-aos-delay="100">
-        <form id="contactForm">
-          <div class="form-group">
-            <label><i class="fas fa-user"></i> الاسم الكامل</label>
-            <input type="text" id="fullName" placeholder="أدخل اسمك الكامل" required>
-          </div>
-          <div class="form-group">
-            <label><i class="fas fa-city"></i> المدينة</label>
-            <input type="text" id="city" placeholder="أدخل اسم مدينتك" required>
-          </div>
-          <div class="form-group">
-            <label><i class="fas fa-phone-alt"></i> الهاتف</label>
-            <input type="tel" id="phone" placeholder="رقم الهاتف" required>
-          </div>
-          <div class="form-group">
-            <label><i class="fas fa-envelope"></i> البريد الإلكتروني</label>
-            <input type="email" id="email" placeholder="example@domain.com" required>
-          </div>
-          <div class="form-group">
-            <label><i class="fas fa-tasks"></i> نوع الطلب</label>
-            <select id="orderType" required>
-              <option value="">اختر نوع الطلب</option>
-              <option value="استفسار">استفسار</option>
-              <option value="دعم فني">دعم فني</option>
-              <option value="طلب خدمة">طلب خدمة</option>
-              <option value="شكوى">شكوى</option>
-            </select>
-          </div>
-          <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> إرسال</button>
+    <!-- Free Trial -->
+    <div class="trial" data-aos="flip-up">
+        <h2><i class="fas fa-gift"></i> <span id="trialTitle">جرب مجاناً 24 ساعة</span></h2>
+        <p id="trialDesc">بدون أي التزام - اكتشف الجودة الفائقة بنفسك</p>
+        <form class="trial-form" id="trialForm">
+            <input type="text" id="trialInput" placeholder="📱 أدخل رقم الواتساب" required>
+            <button type="submit" class="btn-trial">
+                <i class="fab fa-whatsapp"></i> <span id="trialBtn">جرب الآن مجاناً</span>
+                <i class="fas fa-arrow-left"></i>
+            </button>
         </form>
-      </div>
     </div>
-  </section>
 
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-col">
-          <h3>Brandrim</h3>
-          <p>منصة رقمية رائدة تقدم حلولاً مبتكرة لتطوير الأعمال وزيادة الأرباح.</p>
-        </div>
-        <div class="footer-col">
-          <h3>روابط سريعة</h3>
-          <ul>
-            <li><a href="#home">الرئيسية</a></li>
-            <li><a href="#services">الخدمات</a></li>
-            <li><a href="#testimonials">آراء العملاء</a></li>
-            <li><a href="#contact">اتصل بنا</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h3>الدعم</h3>
-          <ul>
-            <li><a href="#" id="privacyFooter">سياسة الخصوصية</a></li>
-            <li><a href="#" id="aboutFooter">من نحن</a></li>
-            <li><a href="#" id="contactFooter">تواصل معنا</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h3>معلومات الاتصال</h3>
-          <div class="contact-box" data-aos="flip-left" data-aos-duration="800">
-            <p><i class="fas fa-phone-alt"></i> 0698490007</p>
-            <p><i class="fas fa-envelope"></i> brandrim.com@gmail.com</p>
-          </div>
-        </div>
-      </div>
-      <div class="social-links">
-        <a href="https://www.facebook.com/share/14Xy8jFQt7E/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/brandrim.1?igsh=OWh5OWFqMWpmc2Qx" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://wa.me/0698490007" target="_blank"><i class="fab fa-whatsapp"></i></a>
-      </div>
-      <div class="copyright">
-        <p>© 2026 Brandrim. جميع الحقوق محفوظة. تصميم وتطوير بإتقان.</p>
-      </div>
+    <!-- Features -->
+    <div class="features">
+        <div class="feature" data-aos="zoom-in"><i class="fas fa-server"></i><h4 id="feat1Title">سيرفرات قوية</h4><p id="feat1Desc">بث بدون تقطيع - استقرار 99.9%</p></div>
+        <div class="feature" data-aos="zoom-in"><i class="fas fa-tv"></i><h4 id="feat2Title">25,000+ قناة</h4><p id="feat2Desc">عربية وعالمية ورياضية</p></div>
+        <div class="feature" data-aos="zoom-in"><i class="fas fa-4k"></i><h4 id="feat3Title">جودة 4K</h4><p id="feat3Desc">صورة واقعية وضوح عالي</p></div>
+        <div class="feature" data-aos="zoom-in"><i class="fas fa-headset"></i><h4 id="feat4Title">دعم 24/7</h4><p id="feat4Desc">خدمة عملاء فورية</p></div>
     </div>
-  </footer>
 
-  <!-- Theme Toggle -->
-  <button class="theme-toggle" id="themeToggle">🌙</button>
+    <!-- Devices -->
+    <div class="devices">
+        <div class="device"><i class="fab fa-android"></i> <span class="device-android">Android TV</span></div>
+        <div class="device"><i class="fab fa-apple"></i> <span class="device-ios">iOS/Apple TV</span></div>
+        <div class="device"><i class="fab fa-windows"></i> <span class="device-windows">Windows/PC</span></div>
+        <div class="device"><i class="fab fa-linux"></i> <span class="device-mac">Mac/Linux</span></div>
+        <div class="device"><i class="fab fa-amazon"></i> <span class="device-fire">Firestick</span></div>
+        <div class="device"><i class="fas fa-tv"></i> <span class="device-smart">Smart TV</span></div>
+    </div>
 
-  <!-- Scripts -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="script.js"></script>
+    <!-- CTA Footer -->
+    <div class="cta" data-aos="zoom-in">
+        <h3 id="ctaTitle">🚀 اشترك الآن واستمتع بتجربة فريدة</h3>
+        <div class="contact-info">
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <div class="contact-details">
+                    <div class="contact-label" id="whatsappLabel">تواصل عبر واتساب</div>
+                    <div class="contact-value">0698490007</div>
+                </div>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="contact-details">
+                    <div class="contact-label" id="emailLabel">البريد الإلكتروني</div>
+                    <div class="contact-value">brandrim.com@gmail.com</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 BRANDRIM IPTV — <span id="footerRights">جميع الحقوق محفوظة</span></p>
+        <div class="social">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-telegram"></i></a>
+            <a href="https://wa.me/212698490007"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </footer>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 800, once: false, mirror: true, easing: 'ease-out-cubic' });
+
+    let currentLang = 'ar';
+    
+    // Translations
+    const translations = {
+        ar: {
+            themeText: 'الوضع المظلم',
+            langText: 'English',
+            badgeText: '+25,000 قناة | جودة 4K | بث مباشر',
+            heroDesc: 'أفضل خدمة IPTV في المغرب والعالم العربي<br>جودة 4K فائقة - بث بدون تقطيع - دعم فني على مدار الساعة',
+            stat1: '99.9% استقرار',
+            stat2: '+120 دولة',
+            stat3: '+15,000 عميل',
+            stat4: '4.9 ★ تقييم',
+            pricingTitle: 'الباقات',
+            pricingCurrency: 'بالدرهم المغربي',
+            pricingSub: 'اختر الباقة المناسبة واستمتع بمشاهدة غير محدودة',
+            planMonthly: 'شهرية',
+            plan3months: '3 أشهر',
+            plan6months: '6 أشهر',
+            planYearly: 'سنة',
+            popularBadge: 'الأكثر مبيعاً',
+            subscribeBtn: 'اشترك الآن',
+            feature1: '1 اتصال متزامن',
+            feature2: '25,000+ قناة',
+            feature3: 'مكتبة VOD محدثة',
+            feature4: 'دعم فني 24/7',
+            feature1_3: '2 اتصال متزامن',
+            feature2_3: 'جودة 4K + FHD',
+            feature3_3: 'EPG (دليل القنوات)',
+            feature4_3: '💰 وفر 50 درهم',
+            feature1_6: '2 اتصال متزامن',
+            feature2_6: '4K Ultra + PPV مجاني',
+            feature3_6: 'دعم VIP أولوية',
+            feature4_6: '🎁 شهر مجاني إضافي',
+            feature5_6: '💰 وفر 150 درهم',
+            feature1_year: '3 اتصال متزامن',
+            feature2_year: '4K Ultra + كل المحتوى',
+            feature3_year: '🎁 شهران مجانيان',
+            feature4_year: 'دعم VIP مدى الحياة',
+            feature5_year: '💰 وفر 350 درهم',
+            countdownTitle: '⏰ العرض الخاص ينتهي خلال',
+            daysLabel: 'أيام',
+            hoursLabel: 'ساعات',
+            minutesLabel: 'دقائق',
+            secondsLabel: 'ثواني',
+            trialTitle: 'جرب مجاناً 24 ساعة',
+            trialDesc: 'بدون أي التزام - اكتشف الجودة الفائقة بنفسك',
+            trialInputPlaceholder: '📱 أدخل رقم الواتساب',
+            trialBtn: 'جرب الآن مجاناً',
+            feat1Title: 'سيرفرات قوية',
+            feat1Desc: 'بث بدون تقطيع - استقرار 99.9%',
+            feat2Title: '25,000+ قناة',
+            feat2Desc: 'عربية وعالمية ورياضية',
+            feat3Title: 'جودة 4K',
+            feat3Desc: 'صورة واقعية وضوح عالي',
+            feat4Title: 'دعم 24/7',
+            feat4Desc: 'خدمة عملاء فورية',
+            deviceAndroid: 'Android TV',
+            deviceIos: 'iOS/Apple TV',
+            deviceWindows: 'Windows/PC',
+            deviceMac: 'Mac/Linux',
+            deviceFire: 'Firestick',
+            deviceSmart: 'Smart TV',
+            ctaTitle: '🚀 اشترك الآن واستمتع بتجربة فريدة',
+            whatsappLabel: 'تواصل عبر واتساب',
+            emailLabel: 'البريد الإلكتروني',
+            footerRights: 'جميع الحقوق محفوظة'
+        },
+        en: {
+            themeText: 'Dark Mode',
+            langText: 'العربية',
+            badgeText: '+25,000 Channels | 4K Quality | Live Streaming',
+            heroDesc: 'Best IPTV Service in Morocco and Arab World<br>Ultra 4K Quality - No Buffering - 24/7 Support',
+            stat1: '99.9% Uptime',
+            stat2: '+120 Countries',
+            stat3: '+15,000 Clients',
+            stat4: '4.9 ★ Rating',
+            pricingTitle: 'Packages',
+            pricingCurrency: 'in Moroccan Dirham',
+            pricingSub: 'Choose the perfect package and enjoy unlimited streaming',
+            planMonthly: 'Monthly',
+            plan3months: '3 Months',
+            plan6months: '6 Months',
+            planYearly: 'Yearly',
+            popularBadge: 'Best Seller',
+            subscribeBtn: 'Subscribe Now',
+            feature1: '1 Connection',
+            feature2: '25,000+ Channels',
+            feature3: 'Updated VOD Library',
+            feature4: '24/7 Support',
+            feature1_3: '2 Connections',
+            feature2_3: '4K + FHD Quality',
+            feature3_3: 'EPG Guide',
+            feature4_3: '💰 Save 50 MAD',
+            feature1_6: '2 Connections',
+            feature2_6: '4K Ultra + Free PPV',
+            feature3_6: 'VIP Priority Support',
+            feature4_6: '🎁 1 Free Month',
+            feature5_6: '💰 Save 150 MAD',
+            feature1_year: '3 Connections',
+            feature2_year: '4K Ultra + All Content',
+            feature3_year: '🎁 2 Free Months',
+            feature4_year: 'Lifetime VIP Support',
+            feature5_year: '💰 Save 350 MAD',
+            countdownTitle: '⏰ Special Offer Ends In',
+            daysLabel: 'Days',
+            hoursLabel: 'Hours',
+            minutesLabel: 'Minutes',
+            secondsLabel: 'Seconds',
+            trialTitle: 'Try Free for 24 Hours',
+            trialDesc: 'No commitment - Discover the quality yourself',
+            trialInputPlaceholder: '📱 Enter WhatsApp Number',
+            trialBtn: 'Try Now for Free',
+            feat1Title: 'Powerful Servers',
+            feat1Desc: 'No buffering - 99.9% Uptime',
+            feat2Title: '25,000+ Channels',
+            feat2Desc: 'Arabic, International & Sports',
+            feat3Title: '4K Quality',
+            feat3Desc: 'Realistic picture & High clarity',
+            feat4Title: '24/7 Support',
+            feat4Desc: 'Instant customer service',
+            deviceAndroid: 'Android TV',
+            deviceIos: 'iOS/Apple TV',
+            deviceWindows: 'Windows/PC',
+            deviceMac: 'Mac/Linux',
+            deviceFire: 'Firestick',
+            deviceSmart: 'Smart TV',
+            ctaTitle: '🚀 Subscribe Now & Enjoy Unique Experience',
+            whatsappLabel: 'Contact via WhatsApp',
+            emailLabel: 'Email Address',
+            footerRights: 'All Rights Reserved'
+        }
+    };
+
+    function switchLanguage(lang) {
+        currentLang = lang;
+        const t = translations[lang];
+        
+        document.getElementById('themeText').innerHTML = t.themeText;
+        document.getElementById('langText').innerHTML = t.langText;
+        document.getElementById('badgeText').innerHTML = t.badgeText;
+        document.getElementById('heroDesc').innerHTML = t.heroDesc;
+        document.getElementById('stat1').innerHTML = t.stat1;
+        document.getElementById('stat2').innerHTML = t.stat2;
+        document.getElementById('stat3').innerHTML = t.stat3;
+        document.getElementById('stat4').innerHTML = t.stat4;
+        document.getElementById('pricingTitle').innerHTML = t.pricingTitle;
+        document.getElementById('pricingCurrency').innerHTML = t.pricingCurrency;
+        document.getElementById('pricingSub').innerHTML = t.pricingSub;
+        
+        // Plan names
+        document.querySelectorAll('.plan-monthly').forEach(el => el.innerHTML = t.planMonthly);
+        document.querySelectorAll('.plan-3months').forEach(el => el.innerHTML = t.plan3months);
+        document.querySelectorAll('.plan-6months').forEach(el => el.innerHTML = t.plan6months);
+        document.querySelectorAll('.plan-yearly').forEach(el => el.innerHTML = t.planYearly);
+        document.querySelectorAll('.popular-badge').forEach(el => el.innerHTML = t.popularBadge);
+        document.querySelectorAll('.subscribe-btn').forEach(el => el.innerHTML = t.subscribeBtn);
+        
+        // Features
+        document.querySelectorAll('.feature1').forEach(el => el.innerHTML = t.feature1);
+        document.querySelectorAll('.feature2').forEach(el => el.innerHTML = t.feature2);
+        document.querySelectorAll('.feature3').forEach(el => el.innerHTML = t.feature3);
+        document.querySelectorAll('.feature4').forEach(el => el.innerHTML = t.feature4);
+        document.querySelectorAll('.feature1-3').forEach(el => el.innerHTML = t.feature1_3);
+        document.querySelectorAll('.feature2-3').forEach(el => el.innerHTML = t.feature2_3);
+        document.querySelectorAll('.feature3-3').forEach(el => el.innerHTML = t.feature3_3);
+        document.querySelectorAll('.feature4-3').forEach(el => el.innerHTML = t.feature4_3);
+        document.querySelectorAll('.feature1-6').forEach(el => el.innerHTML = t.feature1_6);
+        document.querySelectorAll('.feature2-6').forEach(el => el.innerHTML = t.feature2_6);
+        document.querySelectorAll('.feature3-6').forEach(el => el.innerHTML = t.feature3_6);
+        document.querySelectorAll('.feature4-6').forEach(el => el.innerHTML = t.feature4_6);
+        document.querySelectorAll('.feature5-6').forEach(el => el.innerHTML = t.feature5_6);
+        document.querySelectorAll('.feature1-year').forEach(el => el.innerHTML = t.feature1_year);
+        document.querySelectorAll('.feature2-year').forEach(el => el.innerHTML = t.feature2_year);
+        document.querySelectorAll('.feature3-year').forEach(el => el.innerHTML = t.feature3_year);
+        document.querySelectorAll('.feature4-year').forEach(el => el.innerHTML = t.feature4_year);
+        document.querySelectorAll('.feature5-year').forEach(el => el.innerHTML = t.feature5_year);
+        
+        // Countdown
+        document.getElementById('countdownTitle').innerHTML = t.countdownTitle;
+        document.getElementById('daysLabel').innerHTML = t.daysLabel;
+        document.getElementById('hoursLabel').innerHTML = t.hoursLabel;
+        document.getElementById('minutesLabel').innerHTML = t.minutesLabel;
+        document.getElementById('secondsLabel').innerHTML = t.secondsLabel;
+        
+        // Trial
+        document.getElementById('trialTitle').innerHTML = t.trialTitle;
+        document.getElementById('trialDesc').innerHTML = t.trialDesc;
+        document.getElementById('trialInput').placeholder = t.trialInputPlaceholder;
+        document.getElementById('trialBtn').innerHTML = t.trialBtn;
+        
+        // Features section
+        document.getElementById('feat1Title').innerHTML = t.feat1Title;
+        document.getElementById('feat1Desc').innerHTML = t.feat1Desc;
+        document.getElementById('feat2Title').innerHTML = t.feat2Title;
+        document.getElementById('feat2Desc').innerHTML = t.feat2Desc;
+        document.getElementById('feat3Title').innerHTML = t.feat3Title;
+        document.getElementById('feat3Desc').innerHTML = t.feat3Desc;
+        document.getElementById('feat4Title').innerHTML = t.feat4Title;
+        document.getElementById('feat4Desc').innerHTML = t.feat4Desc;
+        
+        // Devices
+        document.querySelectorAll('.device-android').forEach(el => el.innerHTML = t.deviceAndroid);
+        document.querySelectorAll('.device-ios').forEach(el => el.innerHTML = t.deviceIos);
+        document.querySelectorAll('.device-windows').forEach(el => el.innerHTML = t.deviceWindows);
+        document.querySelectorAll('.device-mac').forEach(el => el.innerHTML = t.deviceMac);
+        document.querySelectorAll('.device-fire').forEach(el => el.innerHTML = t.deviceFire);
+        document.querySelectorAll('.device-smart').forEach(el => el.innerHTML = t.deviceSmart);
+        
+        // CTA
+        document.getElementById('ctaTitle').innerHTML = t.ctaTitle;
+        document.getElementById('whatsappLabel').innerHTML = t.whatsappLabel;
+        document.getElementById('emailLabel').innerHTML = t.emailLabel;
+        document.getElementById('footerRights').innerHTML = t.footerRights;
+        
+        // Direction
+        if (lang === 'en') {
+            document.body.classList.add('english');
+            document.body.dir = 'ltr';
+        } else {
+            document.body.classList.remove('english');
+            document.body.dir = 'rtl';
+        }
+    }
+    
+    // Language Switcher
+    document.getElementById('langSwitch').addEventListener('click', () => {
+        if (currentLang === 'ar') {
+            switchLanguage('en');
+        } else {
+            switchLanguage('ar');
+        }
+    });
+    
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    let dark = true;
+    themeToggle.addEventListener('click', () => {
+        dark = !dark;
+        document.documentElement.style.setProperty('--bg', dark ? '#0a0f1e' : '#f8fafc');
+        document.documentElement.style.setProperty('--card', dark ? 'rgba(15,23,42,0.85)' : 'rgba(255,255,255,0.9)');
+        document.documentElement.style.setProperty('--card-solid', dark ? '#0f172a' : '#ffffff');
+        document.documentElement.style.setProperty('--text', dark ? '#ffffff' : '#0f172a');
+        document.documentElement.style.setProperty('--text-light', dark ? '#cbd5e1' : '#475569');
+        const themeText = currentLang === 'ar' ? (dark ? 'الوضع المظلم' : 'الوضع الفاتح') : (dark ? 'Dark Mode' : 'Light Mode');
+        document.getElementById('themeText').innerHTML = themeText;
+    });
+    
+    // Countdown Timer
+    function startCountdown() {
+        const target = new Date();
+        target.setDate(target.getDate() + 3);
+        target.setHours(23, 59, 59);
+        
+        function update() {
+            const now = new Date();
+            const diff = target - now;
+            if (diff <= 0) return;
+            document.getElementById('days').innerHTML = Math.floor(diff / (1000*60*60*24)).toString().padStart(2,'0');
+            document.getElementById('hours').innerHTML = Math.floor((diff % (86400000)) / 3600000).toString().padStart(2,'0');
+            document.getElementById('minutes').innerHTML = Math.floor((diff % 3600000) / 60000).toString().padStart(2,'0');
+            document.getElementById('seconds').innerHTML = Math.floor((diff % 60000) / 1000).toString().padStart(2,'0');
+        }
+        update();
+        setInterval(update, 1000);
+    }
+    startCountdown();
+    
+    // Trial Form
+    document.getElementById('trialForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const phone = e.target.querySelector('input').value;
+        window.open(`https://wa.me/212698490007?text=أريد%20التجربة%20المجانية%20لمدة%2024%20ساعة%20رقمي%20${encodeURIComponent(phone)}`, '_blank');
+    });
+    
+    // Create particles
+    function createParticles() {
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 40; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            const size = Math.random() * 4 + 2;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = Math.random() * 12 + 6 + 's';
+            particle.style.animationDelay = Math.random() * 8 + 's';
+            particlesContainer.appendChild(particle);
+        }
+    }
+    createParticles();
+</script>
 </body>
 </html>
